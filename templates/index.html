@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block body %}
+      <!-- form -->
+      <div class="container mt-3">
+        <form action="/" method="POST">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Description</label>
+              <input type="text" class="form-control" id="desc" name="desc">
+            </div>
+            <button type="submit" class="btn btn-outline-dark">Submit</button>
+        </form>
+      </div>
+
+      <!-- Table -->
+      <div class="container mt-4">
+        <h3>Your Todos</h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">SNo</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for todo in alltodo %}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{todo.title}}</td>
+                <td>{{todo.desc}}</td>
+                <td>{{todo.date}}</td>
+                <td><a href="/update/{{todo.sno}}" type="button" class="btn btn-dark btn-sm mx-1">Update</a>
+                <a href="/delete/{{todo.sno}}" type="button" class="btn btn-dark btn-sm mx-1">Delete</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+{% endblock body %}
+    
